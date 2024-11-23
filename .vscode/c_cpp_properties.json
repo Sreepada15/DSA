@@ -1,0 +1,19 @@
+{
+  "configurations": [
+    {
+      "name": "Mac",
+      "includePath": [
+        "${workspaceFolder}/**",
+        "/opt/homebrew/Cellar/gcc/14.2.0_1/include/c++/14",  // Use this path
+        "/usr/local/include",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/"
+        //"${workspaceFolder}/bits" 
+      ],
+      "compilerPath": "/opt/homebrew/Cellar/gcc/14.2.0_1/bin/g++-14",
+      "cStandard": "c17",
+      "cppStandard": "c++17",
+      "intelliSenseMode": "macos-gcc-x64"
+    }
+  ],
+  "version": 4
+}
