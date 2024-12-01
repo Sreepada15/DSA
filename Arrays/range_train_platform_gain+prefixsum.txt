@@ -1,0 +1,69 @@
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+class Solution {
+  public:
+    // Function to find the minimum number of platforms required at the
+    // railway station such that no train waits.
+    int findPlatform(vector<int>& arr, vector<int>& dep) {
+        // Your code here
+        int gain[2360] ={0};
+        int prefix_sum[2360] ={0};
+        
+        for(int i=0;i<arr.size();i++){
+            int a = arr[i];
+            int b = dep[i];
+            gain[a] += 1;
+            gain[b+1] -=1;
+        }
+        prefix_sum[0] = gain[0];
+        
+        for(int i=1;i<2360;i++){
+            prefix_sum[i] = prefix_sum[i-1]+gain[i];
+        }
+        int ans = *max_element(prefix_sum,prefix_sum+2360);
+        return ans;
+        
+    }
+};
+
+
+//{ Driver Code Starts.
+
+int main() {
+    int t;
+    cin >> t;
+    cin.ignore();
+    while (t--) {
+        vector<int> arr, dep;
+        string input;
+
+        // Read first array (arr)
+        getline(cin, input);
+        stringstream ss(input);
+        int number;
+        while (ss >> number) {
+            arr.push_back(number);
+        }
+
+        // Read second array (dep)
+        getline(cin, input);
+        stringstream ss2(input);
+        while (ss2 >> number) {
+            dep.push_back(number);
+        }
+
+        // Assuming Solution class is defined elsewhere with a method findPlatform
+        Solution ob;
+        cout << ob.findPlatform(arr, dep);
+
+        cout << endl;
+        cout << "~\n";
+    }
+    return 0;
+}
+
+// } Driver Code Ends

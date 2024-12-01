@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int maximumPopulation(vector<vector<int>>& logs) {
+        int gain[2051] = {0};
+        int prefixSum[2051] = {0};
+
+        for (int i = 0; i < logs.size(); ++i) {
+            int birth = logs[i][0];
+            int death = logs[i][1];
+            gain[birth] += 1;
+            gain[death] -= 1;
+        }
+
+        prefixSum[0] = gain[0];
+        for (int i = 1; i < 2051; ++i) {
+            prefixSum[i] = prefixSum[i - 1] + gain[i];
+        }
+
+        int maxYear = 0;
+        for (int i = 1; i < 2051; ++i) {
+            if (prefixSum[i] > prefixSum[maxYear]) {
+                maxYear = i;
+            }
+        }
+
+        return maxYear;
+    }
+};
